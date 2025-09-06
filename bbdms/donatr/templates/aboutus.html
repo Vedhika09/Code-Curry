@@ -3,26 +3,34 @@
 
 {% block content %}
 <section class="about_section layout_padding">
-    <div class="container  ">
+    <div class="container">
       <div class="row">
-        <div class="col-md-6 ">
+        <!-- NGO Donation Image -->
+        <div class="col-md-6">
           <div class="img-box">
-            <img src="{% static 'assets1/images/about-img.jpg'%}" height="300" width="200" alt="">
+            <img src="{% static 'assets1/images/ngo-donate.jpg' %}" height="300" width="200" alt="Donate to NGOs">
           </div>
         </div>
+
+        <!-- Donation Information -->
         <div class="col-md-6">
           <div class="detail-box">
             <div class="heading_container">
               <h2>
-                About <span>Us</span>
+                Support <span>NGOs</span>
               </h2>
             </div>
             <p>
-              At <strong>LifeLine Blood Bank</strong>, we believe that a single drop of blood can be the start of someone's second chance at life. 
-              Our mission is to bridge the gap between donors and those in urgent need of blood through a secure, transparent, and user-friendly platform.
-              Whether you're a regular donor, a first-time volunteer, or someone seeking help, our system makes it easier than ever to connect, communicate, and contribute. 
-              Join us in building a stronger community — where every heartbeat counts, and every donor becomes a hero.
+              At <strong>Donatr</strong>, we believe that every contribution, no matter how small, can create a lasting impact.  
+              Our mission is to connect generous donors with trusted NGOs working tirelessly in areas such as education, healthcare, poverty alleviation, and environmental protection.  
+              With a secure and transparent donation platform, you can choose causes close to your heart and make a real difference in the lives of those who need it most.  
+              Together, let’s build a better tomorrow — one donation at a time.
             </p>
+            <div class="btn-box mt-3">
+              <a href="{% url 'donate' %}" class="btn btn-primary">
+                Donate Now
+              </a>
+            </div>
           </div>
         </div>
       </div>
