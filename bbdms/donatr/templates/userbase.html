@@ -6,11 +6,11 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="keywords" content="blood donation, donor management, blood bank" />
-  <meta name="description" content="Blood Bank and Donor Management System - Donate blood, save lives." />
-  <meta name="author" content="Your Team Name" />
+  <meta name="keywords" content="donation, charity, donate items, NGO" />
+  <meta name="description" content="Donatr - Donate your unused items to NGOs and help those in need." />
+  <meta name="author" content="Donatr Team" />
   <meta name="color-scheme" content="light dark" />
-  <title>Blood-Bank Donor Management System</title>
+  <title>Donatr - Donate Items, Change Lives</title>
 
   <link rel="icon" type="image/png" href="{% static 'assets1/images/favicon.png' %}" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +59,7 @@
 
     .scroll-down-btn {
       position: absolute;
-      bottom: 150px; /* moved up from 30px */
+      bottom: 150px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 2;
@@ -96,6 +96,19 @@
     #scrollTopBtn:hover {
       background-color: #c82333;
     }
+
+    .steps-section {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .steps-section .step {
+      padding: 20px;
+    }
+
+    .steps-section .step h3 {
+      margin-top: 15px;
+    }
   </style>
 </head>
 
@@ -107,19 +120,77 @@
   <!-- Video Hero Section -->
   <section class="video-hero-section">
     <video autoplay muted loop playsinline>
-      <source src="{% static 'assets1/images/herobg.mp4' %}" type="video/mp4">
+      <source src="{% static 'assets1/images/donation-bg.mp4' %}" type="video/mp4">
       Your browser does not support HTML5 video.
     </video>
     <div class="video-overlay"></div>
     <div class="container video-content">
-      <h1 class="display-4 fw-bold">Donate Blood. Save Lives.</h1>
-      <p class="lead">A single pint can save three lives. A single gesture can create a million smiles.</p>
+      <h1 class="display-4 fw-bold">Donate Items. Change Lives.</h1>
+      <p class="lead">Your unused items can bring hope to someone in need.</p>
+      <a href="/donate" class="btn btn-danger btn-lg mt-3">Donate Now</a>
     </div>
     <button class="scroll-down-btn" onclick="document.getElementById('about-section').scrollIntoView({ behavior: 'smooth' });">↓</button>
   </section>
 
   <!-- Main Content -->
   <main id="about-section">
+
+    <!-- Quick Steps Section -->
+    <section class="steps-section">
+      <div class="container">
+        <h2 class="mb-5">How It Works</h2>
+        <div class="row">
+          <div class="col-md-4 step">
+            <i class="fa fa-user-plus fa-3x"></i>
+            <h3>Sign Up / Login</h3>
+            <p>Create an account to start donating items.</p>
+          </div>
+          <div class="col-md-4 step">
+            <i class="fa fa-gift fa-3x"></i>
+            <h3>Submit Donation</h3>
+            <p>List your item, its condition, and select the NGO to donate.</p>
+          </div>
+          <div class="col-md-4 step">
+            <i class="fa fa-check-circle fa-3x"></i>
+            <h3>Track & Receive Receipt</h3>
+            <p>Track your donation and get a digital receipt for impact tracking.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Placeholder for Featured NGOs -->
+    <section class="featured-ngos py-5 bg-light">
+      <div class="container text-center">
+        <h2 class="mb-4">Featured NGOs</h2>
+        <p>See what items NGOs are currently requesting.</p>
+        <!-- Replace below with dynamic content later -->
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card p-3 mb-3">
+              <h5>Helping Hands</h5>
+              <p>Wishlist: Books, Clothes</p>
+              <a href="/donate" class="btn btn-sm btn-primary">Donate</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card p-3 mb-3">
+              <h5>Care Foundation</h5>
+              <p>Wishlist: Food, Toys</p>
+              <a href="/donate" class="btn btn-sm btn-primary">Donate</a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card p-3 mb-3">
+              <h5>Hope NGO</h5>
+              <p>Wishlist: Clothes, School Supplies</p>
+              <a href="/donate" class="btn btn-sm btn-primary">Donate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     {% block content %}
     {% endblock %}
   </main>
@@ -136,10 +207,8 @@
   <script src="{% static 'assets1/js/bootstrap.js' %}" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
   <script src="{% static 'assets1/js/custom.js' %}" defer></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap" async defer></script>
 
   <script defer>
-    function myMap() {}
     const btn = document.getElementById("scrollTopBtn");
     window.onscroll = function () {
       btn.style.display = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) ? "block" : "none";
@@ -151,3 +220,4 @@
 
 </body>
 </html>
+in userbase.html
