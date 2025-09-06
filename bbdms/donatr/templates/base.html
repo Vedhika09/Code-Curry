@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>BBDMS</title>
+
+  <!-- Fonts and Icons -->
+  <script src="{% static 'assets/js/plugin/webfont/webfont.min.js' %}"></script>
+  <script>
+    WebFont.load({
+      google: { families: ["Public Sans:300,400,500,600,700"] },
+      custom: {
+        families: [
+          "Font Awesome 5 Solid",
+          "Font Awesome 5 Regular",
+          "Font Awesome 5 Brands",
+          "simple-line-icons"
+        ],
+        urls: ["{% static 'assets/css/fonts.min.css' %}"]
+      },
+      active: function () {
+        sessionStorage.fonts = true;
+      }
+    });
+  </script>
+
+  <!-- Core CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/kaiadmin.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- Sidebar -->
+    {% include 'includes/sidebar.html' %}
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+      <!-- Header -->
+      <div class="main-header">
+        {% include 'includes/header.html' %}
+      </div>
+
+      <!-- Flash Messages -->
+      {% if messages %}
+        <div class="container mt-3">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Main Content -->
+      <div class="container">
+        {% block content %}{% endblock %}
+      </div>
+
+      <!-- Footer -->
+      {% include 'includes/footer.html' %}
+    </div>
+  </div>
+
+  <!-- Core JS Files -->
+  <script src="{% static 'assets/js/core/jquery-3.7.1.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+
+  <!-- Plugins -->
+  <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/chart.js/chart.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/datatables/datatables.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/jsvectormap/jsvectormap.min.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/jsvectormap/world.js' %}"></script>
+  <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
+  <!-- Main App JS -->
+  <script src="{% static 'assets/js/kaiadmin.min.js' %}"></script>
+  <script src="{% static 'assets/js/setting-demo.js' %}"></script>
+
+  <!-- Initialization Scripts -->
+  <script>
+    $(document).ready(function () {
+      $("#basic-datatables").DataTable();
+
+      $("#multi-filter-select").DataTable({
+        pageLength: 5,
+        initComplete: function () {
+          this.api().columns().every(function () {
+            var column = this;
+            var select = $('<select class="form-select"><option value=""></option></select>')
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column.data().unique().sort().each(function (d) {
+              select.append('<option value="' + d + '">' + d + "</option>");
+            });
+          });
+        }
+      });
+
+      $("#add-row").DataTable({ pageLength: 5 });
+
+      var action = `
+        <td>
+          <div class="form-button-action">
+            <button type="button" class="btn btn-link btn-primary btn-lg" data-bs-toggle="tooltip" title="Edit Task">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" class="btn btn-link btn-danger" data-bs-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+        </td>`;
+
+      $("#addRowButton").click(function () {
+        $("#add-row")
+          .DataTable()
+          .row.add([
+            $("#addName").val(),
+            $("#addPosition").val(),
+            $("#addOffice").val(),
+            action
+          ])
+          .draw();
+        $("#addRowModal").modal("hide");
+      });
+    });
+  </script>
+
+  <!-- Fix: Auto-scroll to top after update -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("updated") === "1") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        // Optional: Clean the URL after scroll
+        if (history.replaceState) {
+          const cleanUrl = window.location.origin + window.location.pathname;
+          history.replaceState(null, null, cleanUrl);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
