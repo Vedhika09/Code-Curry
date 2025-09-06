@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+    <div class="container mt-5 vh-100 table-responsive">
+        <table id="mytable" class="table data">
+            <thead class="table-dark">
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Donor Details</th>
+                    <th scope="col">Volunteer Details</th>
+                  </tr>
+            </thead>
+            <tbody>
+                {% for i in gallery %}
+                <tr class="text-center">
+                    <th>1</th>
+                    <td >
+                        <h3 >Cloth Donation</h3>
+                        <img src="{{i.deliverypic.url}}" width="150" height="150" />
+                        <h5>Donation Area :{{i.donation.donationarea.areaname}}</h5>
+                        <h5>Donation Date : {{i.donation.donationdate}}</h5>
+                       
+                    </td>
+                    <td>
+                        <div>
+                            <img class="rounded-circle" src="{{i.donation.donor.userpic.url}}" width="80" height="80" />
+                        </div>
+                        <h4>Name : {{i.donation.donor.user.first_name}}{{i.donation.donor.user.last_name}}</h4>
+                        <h4>Email : {{i.donation.donor.user.email}}</h4>
+                        <h4>Contact : {{i.donation.donor.contact}}</h4>
+                    </td>
+                    <td>
+                        <div>
+                            <img class="rounded-circle" src="{{i.donation.volunteer.userpic.url}}" width="80" height="80" />
+                        </div>
+                        <h4>Name : {{i.donation.volunteer.user.first_name}}{{i.donation.volunteer.user.last_name}}</h4>
+                        <h4>Email : {{i.donation.volunteer.user.email}}</h4>
+                        <h4>Status : {{i.donation.volunteer.contact}}</h4>
+                    </td>
+                  </tr>
+                 {% endfor %}
+            
+            </tbody>
+        </table>
+      </div>
+{% endblock main %}

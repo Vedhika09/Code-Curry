@@ -1,0 +1,47 @@
+{% load static %}
+<!-- Footer -->
+<footer class="footer py-4 bg-info text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Left: Copyright -->
+      <div class="col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
+        &copy; {{ now|date:"Y" }} Created by <strong>Code n Curry</strong>
+      </div>
+      
+      <!-- Middle: Social Links -->
+      <div class="col-lg-4 text-center mb-3 mb-lg-0">
+        <a class="btn btn-dark btn-social mx-2 rounded-circle" href="#!" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="btn btn-dark btn-social mx-2 rounded-circle" href="#!" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-dark btn-social mx-2 rounded-circle" href="#!" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+      
+      <!-- Right: Policy Links -->
+      <div class="col-lg-4 text-center text-lg-end">
+        <a class="link-light text-decoration-none me-3" href="#!">Privacy Policy</a>
+        <a class="link-light text-decoration-none" href="#!">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/myscript.js' %}"></script>
+
+<script>
+  $(document).ready(function () {
+    $('#mytable').DataTable();
+  });
+</script>
+</body>
+</html>
